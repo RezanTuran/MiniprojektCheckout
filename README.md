@@ -1,44 +1,41 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Miniprojekt 2 - Checkout 
+### Uppgiftsbeskrivningen
+Det ni ska skapa är en klassisk e-handel sida som presenterar ett antal olika produkter.
+Vilka typer av produkter som säljs är valfritt men det ska vara seriöst och välgjort. Det ska
+vara möjligt att klicka på en produkt för att kunna läsa mer om den. Från både startsidan
+och produktsidan ska det vara möjligt att lägga till produkter i en kundvagn och det ska
+tydlig framgå för användaren när produkten läggs till i kundvagnen.
+Utcheckningsflödet skall skall ligga på en egen sida och innehålla delarna Kundvagn,
+Dina uppgifter, Fraktsätt & Betalsätt. 
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Utcheckningsflödet
+#### Kundvagn
+Ska lista tillagda produkter (bild & titel), antal, pris och kundvagnens totalpris. Det ska
+vara möjligt att uppdatera kundvagnen - dvs ändra antalet av en produkt eller ta bort en
+produkt helt från kundvagnen. Totalpriset ska alltid uppdateras och vara korrekt.
+#### Dina uppgifter
+Ska vara ett formulär där man fyller i namn, mail, telefonnummer och adress. Fälten i
+formuläret ska gå att automatisk fyllas i.
+#### Fraktsätt
+Det ska gå att välja mellan minst tre olika fraktsätt där det tydligt framgår vem som är
+leverantören, kostnaden för frakten samt leveransdatumet. Leveransdatumet ska baseras
+på hur lång tid det tar för en leverantör att leverera din order från det aktuella datumet.
+(leverantör 1 tar 24h, leverantör 2 tar 48h osv).
+#### Betalsätt
+Det ska även här gå att välja mellan minst tre olika betalsätt (kort & Swish skall finnas).
+Varje betalsätt ska innehålla ett formulär för nödvändig information. Fälten i formuläret
+ska gå att automatisk fyllas i.
+När alla delarna i utcheckningsflödet har fyllts i ska det finns en ”Slutför köp” knapp
+tillsammans med totalpriset (inklusive frakt och moms). När man väljer att slutföra sitt
+köp skall detta endast gå om samtlig information är rätt ifylld. Vid genomfört köp skall en
+bekräftelse visas på köpet. Tänk på att det inte ska gå att placera ordern två gånger, även
+om man navigerar tillbaka på sidan!
+#### Adminsidan (VG)
+Designen på denna sida är valfri men skall utgå ifrån designsystemet ni använder er av.
+Det skall finnas en knapp på startsidan som tar användaren till adminsidan. På
+adminsidan skall ni lista alla produkter samt ge användaren möjlighet att ta bort, lägga till
+eller ändra samtliga produkter (CRUD). Om ni väljer att ha en separat sida, modal eller
+accordion för ändring/tilläggning av en produkt är valfritt. Samtliga produkter skall vara
+sparade i localstorage, detta betyder att om localstorage är tomt vid inladdning av sidan
+behöver samtliga fördefinierade produkter sparas till localstorage. Använd en URL för
+bilder så det enkelt kan sparas i localstorage. 
