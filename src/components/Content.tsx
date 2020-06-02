@@ -1,7 +1,6 @@
 import React from 'react';
 import Product from './Product';
 import { Grid } from '@material-ui/core';
-import CardHeader from '@material-ui/core/CardHeader';
 
 
 const Content = () => {
