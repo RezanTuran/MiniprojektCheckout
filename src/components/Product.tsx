@@ -13,6 +13,7 @@ export  interface Product{
   id: number
   name: string
   description: string
+  size:number
   price: number
   img: string
 }
@@ -22,29 +23,43 @@ let Products: Product[] = [
     "id": 0,
     "name":"Gant",
     "description": "Bra kvalite",
+    "size": 41,
     "price": 899,
-    "img": "../assets/produkt1.png"
+    "img": "Gant.png"
+  },
+  { 
+    "id": 1,
+    "name":"Nike",
+    "description": "Bra kvalite",
+    "size": 43,
+    "price": 589,
+    "img": "Nike.jpg"
   },
 ];
 
 const Product = () => {
   
     return(
-      <div>
+      <div style={productContainer}>
          {Products.map((product) =>{
             return(
             <div>
               <p>{ product.id }</p>
               <h3>{ product.name }</h3>
               <p>{ product.description }</p>
+              <p>{ product.size }</p>
               <p>{ product.price }</p>
-              <img src={product.img} />
+              <img src={ require("./../assets/images/" + product.img) } alt="produktImg" />
             </div>
             )
           })}
-        
       </div>
 );
 };
+
+let productContainer  ={
+  display: "flex",
+}
+
 
 export default Product;
