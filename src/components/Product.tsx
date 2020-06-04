@@ -1,13 +1,5 @@
 import React from 'react';
-//import { makeStyles } from '@material-ui/core/styles';
-// import Card from '@material-ui/core/Card';
-// import CardHeader from '@material-ui/core/CardHeader';
-// import CardActions from '@material-ui/core/CardActions';
-// import CardContent from '@material-ui/core/CardContent';
-// import Typography from '@material-ui/core/Typography';
-// import Button from '@material-ui/core/Button';
-// import ShareIcon from '@material-ui/icons/Share';
-// import { Avatar,IconButton, CardMedia } from '@material-ui/core';
+
 
 export  interface Product{
   id: number
@@ -33,23 +25,50 @@ let Products: Product[] = [
     "description": "Bra kvalite",
     "size": 43,
     "price": 589,
-    "img": "Nike.jpg"
+    "img": "Gant.png"
+  },
+  { 
+    "id": 2,
+    "name":"Addidas",
+    "description": "Bra kvalite",
+    "size": 38,
+    "price": 675,
+    "img": "Gant.png"
+  },
+  { 
+    "id": 3,
+    "name":"Puma",
+    "description": "Bra kvalite",
+    "size": 41,
+    "price": 499,
+    "img": "Gant.png"
+  },
+  { 
+    "id": 4,
+    "name":"Nike",
+    "description": "Bra kvalite",
+    "size": 40,
+    "price": 359,
+    "img": "Gant.png"
   },
 ];
+
+
 
 const Product = () => {
   
     return(
-      <div style={productContainer}>
+      <div>
          {Products.map((product) =>{
             return(
             <div>
+              <img src={ require("./../assets/images/" + product.img) } alt="produktImg" />
               <p>{ product.id }</p>
               <h3>{ product.name }</h3>
               <p>{ product.description }</p>
               <p>{ product.size }</p>
-              <p>{ product.price }</p>
-              <img src={ require("./../assets/images/" + product.img) } alt="produktImg" />
+              <p>{ product.price } :- </p>
+              <button>Köp</button>
             </div>
             )
           })}
@@ -57,9 +76,6 @@ const Product = () => {
 );
 };
 
-let productContainer  ={
-  display: "flex",
-}
 
 
 export default Product;
