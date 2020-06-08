@@ -6,16 +6,18 @@ import HomeIcon from "@material-ui/icons/Home";
 import InfoIcon from '@material-ui/icons/Info';
 import StoreIcon from '@material-ui/icons/Store';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
+import CheckIcon from '@material-ui/icons/Check';
 import Contact from '../pages/Contact';
 import Product from '../components/Product';
 import About from '../pages/About';
 import Home from '../pages/Home';
+import Checkout from '../pages/Checkout';
 
 const Nav = () => {
     const classes = useStyles();
     return(
         <Router>
-          <div style={{display: 'flex', height:'200vh'}} >
+          <div style={{display: 'flex', height:'auto'}} >
               <Drawer
                 variant="persistent"
                 anchor="left"
@@ -58,6 +60,16 @@ const Nav = () => {
                       <ListItemText primary={"Kontakt"} />
                     </ListItem>
                   </Link>
+
+                  <Link to="/checkout" className={classes.link}>
+                    <ListItem button>
+                      <ListItemIcon>
+                        <CheckIcon />
+                      </ListItemIcon>
+                      <ListItemText primary={"Checkout"} />
+                    </ListItem>
+                  </Link>
+
                 </List>
               </Drawer>
   
@@ -94,6 +106,15 @@ const Nav = () => {
                     </Typography>
                   </Container>
                 </Route>
+
+                <Route exact path ="/checkout" >
+                  <Container>
+                    <Typography variant="h3" gutterBottom>
+                        <Checkout />
+                    </Typography>
+                  </Container>
+                </Route>
+
               </Switch>
   
           </div>

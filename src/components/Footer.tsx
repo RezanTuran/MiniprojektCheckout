@@ -11,19 +11,20 @@ const Footer = () => {
             <div style={boxStyle}> <FacebookIcon style={iconStyle} /> </div>
             <div style={boxStyle}> <InstagramIcon style={iconStyle}  /> </div>
             <div style={boxStyle}> <TwitterIcon style={iconStyle}  /> </div>
+            <h3 style={footerText}> &copy; Grup 4</h3>
         </div>
-        <h3 style={footerText}> &copy; Grup 4</h3>
     </div>
     );
 };
 
 const footerStyle: CSSProperties = {
-    position:'fixed',
+    position:'sticky',
     backgroundColor: 'gray',
     left: 0,
     bottom: 0,
     width: '100%',
     textAlign:'center',
+    marginTop:'2em'
 };
 
 const containerStyle: CSSProperties ={
@@ -45,7 +46,7 @@ const iconStyle: CSSProperties = {
 const footerText: CSSProperties ={
     color: 'black',
     fontSize: '1em',
-    marginTop: '0'
+    marginTop: '1em',
 }
 
 export default Footer;
