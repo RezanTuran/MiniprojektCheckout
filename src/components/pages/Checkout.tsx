@@ -1,8 +1,8 @@
 import React from 'react';
-import PaymentForm from '../components/PaymentForm';
-import AddressForm from '../components/AddressForm';
+import PaymentForm from '../PaymentForm';
+import AddressForm from '../AddressForm';
 import { FormControl } from '@material-ui/core';
-import Delivery from '../components/Delivery';
+import Delivery from '../Delivery';
 
 
 const Checkout = () => {

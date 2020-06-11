@@ -7,11 +7,11 @@ import InfoIcon from '@material-ui/icons/Info';
 import StoreIcon from '@material-ui/icons/Store';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 import CheckIcon from '@material-ui/icons/Check';
-import Contact from '../pages/Contact';
+import Contact from './pages/Contact';
 import Product from '../components/Product';
-import About from '../pages/About';
-import Home from '../pages/Home';
-import Checkout from '../pages/Checkout';
+import About from './pages/About';
+import Home from './pages/Home';
+import Checkout from './pages/Checkout';
 
 const Nav = () => {
     const classes = useStyles();
