@@ -14,6 +14,8 @@ import Home from '../pages/Home';
 import Checkout from '../pages/Checkout';
 import CartView from './cartsite'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { CartConsumer, ContextState } from '../contexts/cartContxt'
+
 
 
 const Nav = () => {
@@ -74,12 +76,19 @@ const Nav = () => {
             </Link>
 
             {<Link to="/cart" className={classes.link}>
-              <ListItem button>
-                <ListItemIcon>
-                  <ShoppingCartIcon />
-                </ListItemIcon>
-                <ListItemText primary={"Go to Cart"} />
-              </ListItem>
+              <CartConsumer>
+                {(contextData: ContextState) => {
+                  return (
+                    <ListItem button>
+                      <ListItemIcon>
+                        <ShoppingCartIcon />
+                      </ListItemIcon>
+                      <ListItemText primary={"Go to Cart "} />
+                      <span>({contextData.countProductsInCart()})</span>
+                    </ListItem>
+                  )
+                }}
+              </CartConsumer>
             </Link>}
 
           </List>
