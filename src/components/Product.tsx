@@ -1,5 +1,9 @@
-import React, { CSSProperties } from 'react';
 import { Button } from '@material-ui/core';
+import { CartConsumer, ContextState } from '../contexts/cartContxt'
+import React, { CSSProperties } from 'react'
+
+
+
 
 export interface Product {
   id: number
@@ -10,7 +14,7 @@ export interface Product {
   img: string
 }
 
-let Products: Product[] = [
+const Products: Product[] = [
   {
     "id": 0,
     "name": "Gant",
@@ -109,26 +113,32 @@ let Products: Product[] = [
   },
 ];
 
-
-
 const Product = () => {
 
   return (
     <div style={productCardContainer}>
-      {Products.map((product, index) => {
+      {Products.map((product) => {
         return (
-          <div key={index} style={productCard}>
+          < div key={product.id} style={productCard} >
             <img style={imgStyle} src={require("./../assets/images/" + product.img)} alt="produktImg" />
             {/* <p>{ product.id }</p> */}
             <h3 style={{ color: 'red' }}>{product.name}</h3>
             <p style={price}>{product.price} :- </p>
             <p>{product.description}</p>
             <p>{product.size}</p>
-            <Button style={button} variant="contained" color="primary">KÖP</Button>
+            <CartConsumer>
+              {(contextData: ContextState) => {
+                console.log(contextData.cartItems)
+                return (
+                  <Button style={button} variant="contained" color="primary" onClick={() => contextData.addProductToCart(product)}>
+                    KÖP</Button>
+                )
+              }}
+            </CartConsumer>
           </div>
         )
       })}
-    </div>
+    </div >
   );
 };
 
@@ -161,6 +171,5 @@ let button: CSSProperties = {
   width: '100%',
   borderRadius: '0'
 }
-
 
 export default Product;
