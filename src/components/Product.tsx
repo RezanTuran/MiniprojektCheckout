@@ -1,5 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { Button } from '@material-ui/core';
+import { CartConsumer, ContextState } from '../contexts/cartContxt'
 
 export  interface Product{
   id: number
@@ -124,7 +125,15 @@ const Product = () => {
               <p style={price}>{ product.price } :- </p>
               <p>{ product.description }</p>
               <p>{ product.size }</p>
-              <Button style={button} variant="contained" color="primary">KÖP</Button>
+              <CartConsumer>
+              {(contextData: ContextState) => {
+                console.log(contextData.cartItems)
+                return (
+                  <Button style={button} variant="contained" color="primary" onClick={() => contextData.addProductToCart(product)}>
+                    KÖP</Button>
+                )
+              }}
+            </CartConsumer>
             </div>
             )
           })}
