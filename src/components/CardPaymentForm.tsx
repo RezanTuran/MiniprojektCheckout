@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { Button } from '@material-ui/core';
+
 
 
 const CardPaymentForm = () => {
@@ -45,7 +45,6 @@ const CardPaymentForm = () => {
           control={<Checkbox color="secondary" name="saveCard" value="yes" />}
           label="Remember credit card details for next time"
         />
-      <Button variant="contained" color="primary" >Betala</Button>
       </Grid>
       </>
     );

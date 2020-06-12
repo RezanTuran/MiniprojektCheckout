@@ -5,7 +5,13 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-export default function AddressForm() {
+interface Props {
+  firstName: string
+  firstNameError: string
+  onChange: (value: string, key: string) => void
+}
+
+export default function AddressForm(props: Props) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -14,6 +20,10 @@ export default function AddressForm() {
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
+            value={props.firstName}
+            onChange={(event) => props.onChange(event.target.value, "firstName")}
+            error={Boolean(props.firstNameError)}
+            helperText={props.firstNameError}
             required
             id="firstName"
             name="firstName"
@@ -91,6 +101,7 @@ export default function AddressForm() {
           />
         </Grid>
       </Grid>
+      
     </React.Fragment>
   );
 }

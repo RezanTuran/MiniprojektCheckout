@@ -1,7 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import { Button } from '@material-ui/core';
 
 const InvoicePaymentForm = () => {
     return(
@@ -48,7 +47,6 @@ const InvoicePaymentForm = () => {
             type="number"
           />
         </Grid>
-        <Button variant="contained" color="primary" >Betala</Button>
     </React.Fragment>
     );
 };
