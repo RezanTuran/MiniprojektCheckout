@@ -1,55 +1,89 @@
+
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import Button from '@material-ui/core/Button';
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
+export default class ValidationForm extends React.Component {
+    state = {
+        formData: {
+            name:'',
+            cardNumber:'',
+            date:'',
+            cvv:'',
+        },
+        submitted: false,
+    }
 
+    handleChange = (event) => {
+        const { formData } = this.state;
+        formData[event.target.name] = event.target.value;
+        this.setState({ formData });
+    }
 
-const CardPaymentForm = () => {
-    return(
-        <>
-      <Grid item xs={12} md={6}>
-        <TextField required id="cardName" label="Namn" fullWidth autoComplete="cc-name" />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <TextField
-          required
-          type="number"
-          id="cardNumber"
-          label="Kort nummer"
-          fullWidth
-          autoComplete="cc-number"
-        />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <TextField 
-        required 
-        id="expDate" 
-        label="Datum" 
-        fullWidth autoComplete="cc-exp" />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <TextField
-          required
-          id="cvv"
-          type="number"
-          label="CVV"
-          helperText="Last three digits on signature strip"
-          fullWidth
-          autoComplete="cc-csc"
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <FormControlLabel
-          control={<Checkbox color="secondary" name="saveCard" value="yes" />}
-          label="Remember credit card details for next time"
-        />
-      </Grid>
-      </>
-    );
-};
+    handleSubmit = () => {
+        this.setState({ submitted: true }, () => {
+            setTimeout(() => this.setState({ submitted: false }), 5000);
+        });
+    }
 
-
-
-export default CardPaymentForm;
+    render() {
+        const { formData, submitted } = this.state;
+        return (
+            <ValidatorForm
+                ref="form"
+                onSubmit={this.handleSubmit}
+            >
+                <h6>Betala med kort</h6>
+                <TextValidator
+                    label="Namn"
+                    onChange={this.handleChange}
+                    name="name"
+                    value={formData.name}
+                    validators={['required']}
+                    errorMessages={['Ange ditt namn för att kunna gå viadare']}
+                />
+                <br/>
+                <TextValidator
+                    label="Kort nummer"
+                    onChange={this.handleChange}
+                    name="cardNumber"
+                    value={formData.cardNumber}
+                    type="number"
+                    validators={['required']}
+                    errorMessages={['Ange kortnummer för att kunna gå vidare']}
+                />
+                <br/>
+                <TextValidator
+                    label="CVV"
+                    onChange={this.handleChange}
+                    name="cvv"
+                    value={formData.cvv}
+                    type="number"
+                    validators={['required']}
+                    errorMessages={['Ange cvv för att kunna gå vidare']}
+                />
+                <br/>
+                <TextValidator
+                    onChange={this.handleChange}
+                    name="date"
+                    value={formData.date}
+                    type="date"
+                    validators={['required']}
+                    errorMessages={['Ange kortets gillighets datum']}
+                />
+                <br/>
+                <Button
+                    color="primary"
+                    variant="contained"
+                    type="submit"
+                    disabled={submitted}
+                >
+                    {
+                        (submitted && (window.location.href = './done'))
+                        || (!submitted && 'Betala')
+                    }
+                </Button>
+            </ValidatorForm>
+        );
+    }
+}

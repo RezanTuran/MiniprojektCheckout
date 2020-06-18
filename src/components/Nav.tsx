@@ -11,6 +11,7 @@ import Contact from './pages/Contact';
 import Product from '../components/Product';
 import About from './pages/About';
 import Home from './pages/Home';
+import Done from './pages/Done';
 import Checkout from './pages/Checkout';
 import CartView from './cartsite'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -72,6 +73,15 @@ const Nav = () => {
                   <CheckIcon />
                 </ListItemIcon>
                 <ListItemText primary={"Checkout"} />
+              </ListItem>
+            </Link>
+
+            <Link to="/done" className={classes.link}>
+              <ListItem button>
+                <ListItemIcon>
+                  <CheckIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Done"} />
               </ListItem>
             </Link>
 
@@ -140,6 +150,14 @@ const Nav = () => {
             <Container>
               <Typography variant="h3" gutterBottom>
                 <Checkout />
+              </Typography>
+            </Container>
+          </Route>
+
+          <Route exact path="/done" >
+            <Container>
+              <Typography variant="h3" gutterBottom>
+                <Done />
               </Typography>
             </Container>
           </Route>
