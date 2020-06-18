@@ -4,7 +4,7 @@ import React from 'react';
 
 const Done = () => {
     return (
-        <div>Done</div>
+        <div><h1>Done</h1></div>
     );
 };
 

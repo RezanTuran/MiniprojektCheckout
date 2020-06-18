@@ -1,107 +1,99 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import Button from '@material-ui/core/Button';
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
-interface Props {
-  firstName: string
-  firstNameError: string
-  onChange: (value: string, key: string) => void
-}
+export default class ValidationForm extends React.Component {
+    state = {
+        formData: {
+            name: '',
+            lastname: '',
+            email: '',
+            password: '',
+            address: '',
+        },
+        submitted: false,
+    }
 
-export default function AddressForm(props: Props) {
-  return (
-    <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Adress
-      </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            value={props.firstName}
-            onChange={(event) => props.onChange(event.target.value, "firstName")}
-            error={Boolean(props.firstNameError)}
-            helperText={props.firstNameError}
-            required
-            id="firstName"
-            name="firstName"
-            label="Förnamn"
-            fullWidth
-            autoComplete="given-name"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Efternamn"
-            fullWidth
-            autoComplete="family-name"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            required
-            id="address1"
-            name="address1"
-            label="Adress 1"
-            fullWidth
-            autoComplete="shipping address-line1"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="address2"
-            name="address2"
-            label="Adress 2"
-            fullWidth
-            autoComplete="shipping address-line2"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="city"
-            name="city"
-            label="Stad"
-            fullWidth
-            autoComplete="shipping address-level2"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField id="state" name="state" label="Region" fullWidth />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="zip"
-            name="zip"
-            label="Postnummer"
-            fullWidth
-            autoComplete="shipping postal-code"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="country"
-            name="country"
-            label="Land"
-            fullWidth
-            autoComplete="shipping country"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="Use this address for payment details"
-          />
-        </Grid>
-      </Grid>
-      
-    </React.Fragment>
-  );
+    handleChange = (event) => {
+        const { formData } = this.state;
+        formData[event.target.name] = event.target.value;
+        this.setState({ formData });
+    }
+
+    handleSubmit = () => {
+        this.setState({ submitted: true }, () => {
+            setTimeout(() => this.setState({ submitted: false }), 5000);
+        });
+    }
+
+    render() {
+        const { formData, submitted } = this.state;
+        return (
+            <ValidatorForm
+                ref="form"
+                onSubmit={this.handleSubmit}
+            >
+                <h4>Customer Information</h4>
+                <TextValidator
+                    label="Förnamn"
+                    onChange={this.handleChange}
+                    name="name"
+                    value={formData.name}
+                    validators={['required']}
+                    errorMessages={['Ange förnamn']}
+                />
+                <br />
+               
+                <TextValidator
+                    label="Efternamn"
+                    onChange={this.handleChange}
+                    name="lastname"
+                    value={formData.lastname}
+                    validators={['required']}
+                    errorMessages={['Ange efternamn']}
+                />
+                <br />
+        
+                <TextValidator
+                    label="Email"
+                    onChange={this.handleChange}
+                    name="email"
+                    value={formData.email}
+                    validators={['required', 'isEmail']}
+                    errorMessages={['Ange email', 'epost är inte gilligt']}
+                />
+                <br />
+                <TextValidator
+                    label="Lösenord"
+                    onChange={this.handleChange}
+                    name="password"
+                    value={formData.password}
+                    validators={['required']}
+                    type="password"
+                    errorMessages={['Ange lösenord']}
+                />
+                <br />
+                <TextValidator
+                    label="Adress"
+                    onChange={this.handleChange}
+                    name="address"
+                    value={formData.address}
+                    validators={['required']}
+                    errorMessages={['Ange adress']}
+                />
+                <br />
+                <Button
+                    color="primary"
+                    variant="contained"
+                    type="submit"
+                    disabled={submitted}
+                >
+                    {
+                        (submitted && 'Dina uppgifter sparas vänligen vänta')
+                        || (!submitted && 'Spara')
+                    }
+                </Button>
+            </ValidatorForm>
+        );
+    }
 }

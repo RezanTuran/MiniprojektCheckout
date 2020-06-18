@@ -1,18 +1,58 @@
+
 import React from 'react';
-import FormControl from '@material-ui/core/FormControl';
-import { InputLabel, Input, FormHelperText } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
+export default class ValidationForm extends React.Component {
+    state = {
+        formData: {
+            phonenumber:''
+        },
+        submitted: false,
+    }
 
-const SwishPaymentForm = () => {
-    return(
-    <FormControl>
-        <InputLabel htmlFor="my-input">Telefonnummer</InputLabel>
-        <Input id="my-input" aria-describedby="my-helper-text" />
-        <FormHelperText id="my-helper-text">Ange telefonnummer som du vill betala med.</FormHelperText>
-    </FormControl>
-    );
-};
+    handleChange = (event) => {
+        const { formData } = this.state;
+        formData[event.target.name] = event.target.value;
+        this.setState({ formData });
+    }
 
+    handleSubmit = () => {
+        this.setState({ submitted: true }, () => {
+            setTimeout(() => this.setState({ submitted: false }), 5000);
+        });
+    }
 
-
-export default SwishPaymentForm;
+    render() {
+        const { formData, submitted } = this.state;
+        return (
+            <ValidatorForm
+                ref="form"
+                onSubmit={this.handleSubmit}
+            >
+                <h6>Betala med swish</h6>
+                <TextValidator
+                    label="Telefonnummer"
+                    onChange={this.handleChange}
+                    name="phonenumber"
+                    value={formData.phonenumber}
+                    type="number"
+                    validators={['required']}
+                    errorMessages={['Ange telefonnummer för kunna gå vidare med betalningen']}
+                />
+                <br/>
+                <Button
+                    color="primary"
+                    variant="contained"
+                    type="submit"
+                    disabled={submitted}
+                >
+                    {
+                        (submitted && (window.location.href = './done') )
+                        || (!submitted && 'Betala')
+                    }
+                </Button>
+            </ValidatorForm>
+        );
+    }
+}
