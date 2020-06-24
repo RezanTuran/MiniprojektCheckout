@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
+
 export default class ValidationForm extends React.Component {
     state = {
         formData: {
@@ -12,19 +13,43 @@ export default class ValidationForm extends React.Component {
             address: '',
         },
         submitted: false,
+        disabled: false
     }
+    
 
     handleChange = (event) => {
         const { formData } = this.state;
         formData[event.target.name] = event.target.value;
         this.setState({ formData });
+
+        if(this.state.formData.name.length > 20){
+            alert("Förnamn får inte vara längre än 20 bokstäver");
+        }
+        if(this.state.formData.lastname.length > 20){
+            alert("Efternamn får inte vara längre än 20 bokstäver");
+        }
+        if(this.state.formData.email.length > 20){
+            alert("Epost får inte vara längre än 20 bokstäver");
+        }
+    
     }
 
     handleSubmit = () => {
         this.setState({ submitted: true }, () => {
             setTimeout(() => this.setState({ submitted: false }), 5000);
         });
+
+        //console.log(this.state.submitted);
+        
+        if(this.state.submitted === true){
+            this.handleDesableClik()
+        }
     }
+
+    handleDesableClik = () => {
+        this.setState( {disabled: !this.state.disabled} )
+    }
+  
 
     render() {
         const { formData, submitted } = this.state;
@@ -33,7 +58,7 @@ export default class ValidationForm extends React.Component {
                 ref="form"
                 onSubmit={this.handleSubmit}
             >
-                <h4>Customer Information</h4>
+                <h6>Kund Information</h6>
                 <TextValidator
                     label="Förnamn"
                     onChange={this.handleChange}
@@ -41,6 +66,7 @@ export default class ValidationForm extends React.Component {
                     value={formData.name}
                     validators={['required']}
                     errorMessages={['Ange förnamn']}
+                    disabled = {(this.state.disabled)}
                 />
                 <br />
                
@@ -51,6 +77,7 @@ export default class ValidationForm extends React.Component {
                     value={formData.lastname}
                     validators={['required']}
                     errorMessages={['Ange efternamn']}
+                    disabled = {(this.state.disabled)}
                 />
                 <br />
         
@@ -61,6 +88,7 @@ export default class ValidationForm extends React.Component {
                     value={formData.email}
                     validators={['required', 'isEmail']}
                     errorMessages={['Ange email', 'epost är inte gilligt']}
+                    disabled = {(this.state.disabled)}
                 />
                 <br />
                 <TextValidator
@@ -71,6 +99,7 @@ export default class ValidationForm extends React.Component {
                     validators={['required']}
                     type="password"
                     errorMessages={['Ange lösenord']}
+                    disabled = {(this.state.disabled)}
                 />
                 <br />
                 <TextValidator
@@ -80,6 +109,7 @@ export default class ValidationForm extends React.Component {
                     value={formData.address}
                     validators={['required']}
                     errorMessages={['Ange adress']}
+                    disabled = {(this.state.disabled)}
                 />
                 <br />
                 <Button

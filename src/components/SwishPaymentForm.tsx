@@ -15,6 +15,11 @@ export default class ValidationForm extends React.Component {
         const { formData } = this.state;
         formData[event.target.name] = event.target.value;
         this.setState({ formData });
+
+        if(this.state.formData.phonenumber.length > 10){
+            alert("Telefonnumer får inte vara mer än 10 siffror..!")
+        }
+
     }
 
     handleSubmit = () => {
