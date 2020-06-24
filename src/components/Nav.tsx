@@ -76,15 +76,6 @@ const Nav = () => {
               </ListItem>
             </Link>
 
-            <Link to="/done" className={classes.link}>
-              <ListItem button>
-                <ListItemIcon>
-                  <CheckIcon />
-                </ListItemIcon>
-                <ListItemText primary={"Done"} />
-              </ListItem>
-            </Link>
-
             {<Link to="/cart" className={classes.link}>
               <CartConsumer>
                 {(contextData: ContextState) => {

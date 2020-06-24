@@ -18,6 +18,14 @@ export default class ValidationForm extends React.Component {
         const { formData } = this.state;
         formData[event.target.name] = event.target.value;
         this.setState({ formData });
+
+        if(this.state.formData.cardNumber.length > 16){
+          alert("Fel format..! Kortnummer får inte vara mer än 16 siffror")
+        }
+        if(this.state.formData.cvv.length > 3){
+          alert("Fel format..! CVV får inte vara mer än 3 siffror")
+        }
+
     }
 
     handleSubmit = () => {
