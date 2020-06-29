@@ -1,6 +1,8 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import PaymentForm from './PaymentForm';
+import Delivery from './Delivery';
+
 
 
 export default class ValidationForm extends React.Component {
@@ -15,7 +17,6 @@ export default class ValidationForm extends React.Component {
         submitted: false,
         disabled: false
     }
-    
 
     handleChange = (event) => {
         const { formData } = this.state;
@@ -40,7 +41,7 @@ export default class ValidationForm extends React.Component {
         });
 
         //console.log(this.state.submitted);
-        
+
         if(this.state.submitted === true){
             this.handleDesableClik()
         }
@@ -49,11 +50,11 @@ export default class ValidationForm extends React.Component {
     handleDesableClik = () => {
         this.setState( {disabled: !this.state.disabled} )
     }
-  
 
     render() {
-        const { formData, submitted } = this.state;
+        const { formData } = this.state;
         return (
+            <React.Fragment>
             <ValidatorForm
                 ref="form"
                 onSubmit={this.handleSubmit}
@@ -112,18 +113,12 @@ export default class ValidationForm extends React.Component {
                     disabled = {(this.state.disabled)}
                 />
                 <br />
-                <Button
-                    color="primary"
-                    variant="contained"
-                    type="submit"
-                    disabled={submitted}
-                >
-                    {
-                        (submitted && 'Dina uppgifter sparas vänligen vänta')
-                        || (!submitted && 'Spara')
-                    }
-                </Button>
+                <Delivery />
+                <PaymentForm />
             </ValidatorForm>
+            </React.Fragment>
         );
     }
 }
+
+

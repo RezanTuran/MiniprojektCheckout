@@ -1,106 +1,101 @@
-import React, {useState} from 'react';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormLabel from '@material-ui/core/FormLabel';
 
+interface Props {}
+interface State {
+  selectedDeliveryMethod: "PostNord" | "DHL" | "Schenker"
+}
 
-const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4),
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-  },
-  card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cardMedia: {
-    paddingTop: '56.25%', // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-}));
+export  interface Delivery{
+  name: string
+  price: number
+  days: number
+}
 
-const shippers = [
-  {
-    id: 1,
-    img: 'dhl.jpg',
-    title: 'DHL',
-    description: 'Leverans inom 24 timmar',
-    price: 99,
-  },
-  {
-    id: 2,
-    img: 'postnord.jpg',
-    title: 'Postnord',
-    description: 'Leverans inom 48 timmar',
-    price: 59,
-  },
-  {
-    id: 3,
-    img: 'instabox.jpg',
-    title: 'Instabox',
-    description: 'Leverans inom 72 timmar',
-    price: 29,
-  },
+let Delivery: Delivery[] = [{
+  name: "PostNord",
+  price: 49,
+  days: 3
+}, {
+  name: "DHL",
+  price: 149,
+  days: 1
+}, {
+  name: "Schenker",
+  price: 499,
+  days: 0
+}
+  
 ];
 
+export default class PaymentForm extends React.Component{
 
-export default function Delivery() {
-  const classes = useStyles();
 
-  const [selectedShipper, setShipper]=useState('dhl' as string)
-  return (
-    <React.Fragment>
-      <CssBaseline />
-        <Container className={classes.cardGrid} maxWidth="xs">
-          {/* End hero unit */}
-          <Grid container spacing={1
-          }>
-            {shippers.map((shipper) => (
-              <Grid item key={shipper.id} xs={4} sm={4} md={4}>
-                <Card style={selectedShipper===shipper.title?{border: '2px black solid'}:{}} className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image={require('./../assets/images/'+shipper.img)}
-                    title={(shipper.title)}
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h6" component="h2">
-                      {shipper.title}
-                    </Typography>
-                    <Typography variant="subtitle2">
-                      {shipper.description}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button onClick={()=>{setShipper(shipper.title)}} size="small" color="inherit" variant="outlined">
-                      Pris: {shipper.price} kr.
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-    </React.Fragment>
-  );
+  state: State = {
+    selectedDeliveryMethod: "PostNord"
+  }
+  
+  renderPaymentFields() {
+    switch(this.state.selectedDeliveryMethod) {
+      case "PostNord": return(
+      <div>
+        <p>{Delivery[0].name}</p>
+        <p>{Delivery[0].days}</p>
+        <p>{Delivery[0].price}</p>
+        <p>{new Date(new Date().setDate(new Date().getDate() + Delivery[0].days)).toISOString().substring(0, 10)}</p>
+      </div>
+      )
+      case "DHL": return(
+      <div>
+        <p>{Delivery[1].name}</p>
+        <p>{Delivery[1].days}</p>
+        <p>{Delivery[1].price}</p>
+        <p>{new Date(new Date().setDate(new Date().getDate() + Delivery[1].days)).toISOString().substring(0, 10)}</p>
+      </div>
+      ) 
+      case "Schenker": return(
+      <div>
+        <p>{Delivery[2].name}</p>
+        <p>{Delivery[2].days}</p>
+        <p>{Delivery[2].price}</p>
+        <p>{new Date(new Date().setDate(new Date().getDate() + Delivery[2].days)).toISOString().substring(0, 10)}</p>
+      </div>
+      )
+    }
+  }
+
+
+  render() {
+    return (
+      <React.Fragment>
+        <Typography variant="h6" gutterBottom>
+          Fraktsätt
+        </Typography>
+        <FormLabel component="legend">Välj Fraktsätt</FormLabel>
+        <RadioGroup aria-label="gender" name="gender1">
+          <FormControlLabel value={Delivery[0].name} control={<Radio />} label="Postnord" 
+          onChange={() => this.setState({ selectedDeliveryMethod: "PostNord"})}
+          checked={this.state.selectedDeliveryMethod === "PostNord"}
+          />
+          <FormControlLabel value={Delivery[1].name} control={<Radio />} label="DHL"
+           onChange={() => this.setState({ selectedDeliveryMethod: "DHL"})} />
+
+          <FormControlLabel value={Delivery[2].name} control={<Radio />} label="Schenker" 
+          onChange={() => this.setState({ selectedDeliveryMethod: "Schenker"})}/>
+        </RadioGroup>
+   
+        <Grid container spacing={3}>
+          {this.renderPaymentFields()}
+        </Grid>
+       
+      </React.Fragment>
+    );
+  }
+
 }
+

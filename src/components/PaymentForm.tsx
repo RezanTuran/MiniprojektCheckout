@@ -39,7 +39,10 @@ export default class PaymentForm extends React.Component<Props, State> {
         
         <FormLabel component="legend">Välj betalsätt</FormLabel>
         <RadioGroup aria-label="gender" name="gender1">
-          <FormControlLabel value="swish" control={<Radio />} label="Swish" onChange={() => this.setState({ selectedPaymentMethod: "swish"})} />
+          <FormControlLabel value="swish" control={<Radio />} label="Swish"
+          onChange={() => this.setState({ selectedPaymentMethod: "swish"})} 
+          checked={this.state.selectedPaymentMethod === "swish"}
+          />
           <FormControlLabel value="betalkort" control={<Radio />} label="Betalkort" onChange={() => this.setState({ selectedPaymentMethod: "betalkort"})}/>
           <FormControlLabel value="faktura" control={<Radio />} label="Faktura" onChange={() => this.setState({ selectedPaymentMethod: "faktura"})}/>
         </RadioGroup>
