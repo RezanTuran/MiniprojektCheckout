@@ -27,4 +27,4 @@ När ni har installerar node.js och alla nödvändiga tilläg i er kodredigerare
 2. Gå till den 'klonade' mappen `cd MiniprojektCheckout`
 3. Kör `npm install`( måste alltid köras före första start eller när du ändrar källkoden)
 4. Kör `npm start`
-5. Bläddra till [http://localhost:3000] (om sidan inte öppnas automatiskt)
+5. Bläddra till [http://localhost:3000](http://localhost:3000) (om sidan inte öppnas automatiskt)
