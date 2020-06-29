@@ -22,6 +22,7 @@ import { CartConsumer, ContextState } from '../contexts/cartContxt'
 const Nav = () => {
   const classes = useStyles();
   return (
+    
     <Router>
       <div style={{ display: 'flex', height: 'auto' }} >
         <Drawer

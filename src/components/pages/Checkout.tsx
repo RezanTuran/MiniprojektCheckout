@@ -1,15 +1,15 @@
 import React from 'react';
-import PaymentForm from '../PaymentForm';
+//import PaymentForm from '../PaymentForm';
 import AddressForm from '../AddressForm';
-import Delivery from '../Delivery';
+//import Delivery from '../Delivery';
 
 
     const Checkout = () => {
         return(
             <form>
                 <AddressForm />
-                <Delivery/>
-                <PaymentForm />
+                {/* <Delivery/> */}
+                {/* <PaymentForm /> */}
             </form>
         );
 };

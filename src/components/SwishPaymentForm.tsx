@@ -3,7 +3,8 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
-export default class ValidationForm extends React.Component {
+
+export default class SwishValidationForm extends React.Component {
     state = {
         formData: {
             phonenumber:''
@@ -23,14 +24,17 @@ export default class ValidationForm extends React.Component {
     }
 
     handleSubmit = () => {
-        this.setState({ submitted: true }, () => {
-            setTimeout(() => this.setState({ submitted: false }), 5000);
-        });
+        if(this.state.formData.phonenumber.length === 10){
+            (window.location.href = './done')
+        }else{
+            alert("Ange rätt telefonnummer och i rätt format")
+        }
     }
 
     render() {
         const { formData, submitted } = this.state;
         return (
+
             <ValidatorForm
                 ref="form"
                 onSubmit={this.handleSubmit}
@@ -52,10 +56,7 @@ export default class ValidationForm extends React.Component {
                     type="submit"
                     disabled={submitted}
                 >
-                    {
-                        (submitted && (window.location.href = './done') )
-                        || (!submitted && 'Betala')
-                    }
+                    Betala
                 </Button>
             </ValidatorForm>
         );
