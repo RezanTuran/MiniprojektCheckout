@@ -11,7 +11,7 @@ export  interface Product{
   img: string
 }
 
-let Products: Product[] = [
+export const Products: Product[] = [
   { 
     "id": 0,
     "name":"Gant",
@@ -113,21 +113,19 @@ let Products: Product[] = [
 
 
 const Product = () => {
-  
     return(
       <div style={productCardContainer}>
          {Products.map((product) =>{
             return(
-            <div style={productCard}>
+            <div key={product.id} style={productCard}>
               <img style={imgStyle} src={ require("./../assets/images/" + product.img) } alt="produktImg" />
-              {/* <p>{ product.id }</p> */}
               <h3 style={{color: 'red'}}>{ product.name }</h3>
               <p style={price}>{ product.price } :- </p>
               <p>{ product.description }</p>
               <p>{ product.size }</p>
               <CartConsumer>
               {(contextData: ContextState) => {
-                console.log(contextData.cartItems)
+                //console.log(contextData.cartItems)
                 return (
                   <Button style={button} variant="contained" color="primary" onClick={() => contextData.addProductToCart(product)}>
                     KÖP</Button>
