@@ -1,8 +1,9 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, Component } from 'react';
 import { Button } from '@material-ui/core';
 import { CartConsumer, ContextState } from '../contexts/cartContxt'
+import { Link } from 'react-router-dom'
 
-export  interface Product{
+export  interface Products{
   id: number
   name: string
   description: string
@@ -11,7 +12,7 @@ export  interface Product{
   img: string
 }
 
-export const Products: Product[] = [
+export const Products: Products[] = [
   { 
     "id": 0,
     "name":"Gant",
@@ -110,34 +111,48 @@ export const Products: Product[] = [
   },
 ];
 
+export interface Props{
 
+}
+export interface State{
 
-const Product = () => {
-    return(
-      <div style={productCardContainer}>
-         {Products.map((product) =>{
-            return(
-            <div key={product.id} style={productCard}>
-              <img style={imgStyle} src={ require("./../assets/images/" + product.img) } alt="produktImg" />
-              <h3 style={{color: 'red'}}>{ product.name }</h3>
-              <p style={price}>{ product.price } :- </p>
-              <p>{ product.description }</p>
-              <p>{ product.size }</p>
-              <CartConsumer>
-              {(contextData: ContextState) => {
-                //console.log(contextData.cartItems)
-                return (
-                  <Button style={button} variant="contained" color="primary" onClick={() => contextData.addProductToCart(product)}>
-                    KÖP</Button>
-                )
-              }}
-            </CartConsumer>
-            </div>
-            )
-          })}
+}
+ 
+class Product extends Component<{}, State> {
+ 
+
+ render() {
+  return(
+          <div style={productCardContainer}>
+             {Products.map((product) =>{
+                return(
+
+                  <div key = {product.id}>
+                  <div key={product.id} style={productCard}>
+                <Link to={"/product/" + product.name}>
+                    <img style={imgStyle} src={ require("./../assets/images/" + product.img) } alt="produktImg" />
+                </Link>
+                      <h3 style={{color: 'red'}}>{ product.name }</h3>
+                  <p style={price}>{ product.price } :- </p>
+                  <p>{ product.description }</p>
+                  <p>{ product.size }</p>
       </div>
-);
-};
+                  <CartConsumer>
+                  {(contextData: ContextState) => {
+                    //console.log(contextData.cartItems)
+                    return (
+                      <Button style={button} variant="contained" color="primary" onClick={() => contextData.addProductToCart(product)}>
+                        KÖP</Button>
+                    )
+                  }}
+                </CartConsumer>
+                </div>
+                )
+              })}
+          </div>
+    );
+    }
+  }
 
 let productCard:CSSProperties ={
   boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
