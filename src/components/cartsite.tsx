@@ -1,7 +1,9 @@
 import React, { CSSProperties } from 'react';
-import { Button } from '@material-ui/core';
+import { Button, Typography, IconButton } from '@material-ui/core';
 import { CartConsumer, ContextState } from '../contexts/cartContxt'
 import { Link } from 'react-router-dom';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 
 export default function cartView() {
     return (
@@ -19,12 +21,14 @@ export default function cartView() {
                                     return (
                                     <div style={productCard}>  
                                         <div key={cartItem.theItem.id}>
-                                            <p>Antal: x {cartItem.quantity}</p>
-                                            <p>{cartItem.theItem.description}</p>
+                                            <p>{cartItem.theItem.name}</p>
                                             <img style={imgStyle} src={require("./../assets/images/" + cartItem.theItem.img)} alt="pic" />
                                             <p style={price}> {cartItem.theItem.price} SEK</p>
                                             <div >
-                                                <Button variant="contained" color="secondary" onClick={() => contextData.deletefromcart(cartItem.theItem, index)}>Ta bort</Button>
+                                                <Button variant="contained" style={addItem} onClick={() => contextData.addProductToCart(cartItem.theItem)}> + </Button>
+                                                <Button variant="contained" style={deleteItem} onClick={() => contextData.deletefromcart(cartItem.theItem, index)}> - </Button>
+                                                <IconButton aria-label="delete" onClick={() => contextData.deletefromcart(cartItem.theItem, index)}><DeleteIcon fontSize="large"/></IconButton>
+                                                <Typography>Antal: x {cartItem.quantity}</Typography>
                                             </div>
                                         </div>
                                     </div>
@@ -68,3 +72,14 @@ let price:CSSProperties ={
     color: 'gray',
     fontSize: '22px'
   }
+
+let addItem:CSSProperties ={
+    backgroundColor: 'green',
+    color: 'white'
+}
+
+let deleteItem:CSSProperties ={
+    backgroundColor: 'red',
+    color: 'white'
+}
+

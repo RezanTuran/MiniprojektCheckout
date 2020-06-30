@@ -5,6 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormLabel from '@material-ui/core/FormLabel';
+import { Box } from '@material-ui/core';
 
 interface Props {}
 interface State {
@@ -24,11 +25,11 @@ let Delivery: Delivery[] = [{
 }, {
   name: "DHL",
   price: 149,
-  days: 1
+  days: 2
 }, {
   name: "Schenker",
   price: 499,
-  days: 0
+  days: 1
 }
   
 ];
@@ -44,26 +45,32 @@ export default class PaymentForm extends React.Component{
     switch(this.state.selectedDeliveryMethod) {
       case "PostNord": return(
       <div>
-        <p>{Delivery[0].name}</p>
-        <p>{Delivery[0].days}</p>
-        <p>{Delivery[0].price}</p>
-        <p>{new Date(new Date().setDate(new Date().getDate() + Delivery[0].days)).toISOString().substring(0, 10)}</p>
+        <Box border={1}>
+          <Typography>{Delivery[0].name}</Typography>
+          <Typography>Leverans dagar: {Delivery[0].days}</Typography>
+          <Typography>Fraktkostnad: {Delivery[0].price} kr.</Typography>
+          <Typography>Ankomst: {new Date(new Date().setDate(new Date().getDate() + Delivery[0].days)).toISOString().substring(0, 10)}</Typography>
+        </Box>
       </div>
       )
       case "DHL": return(
       <div>
-        <p>{Delivery[1].name}</p>
-        <p>{Delivery[1].days}</p>
-        <p>{Delivery[1].price}</p>
-        <p>{new Date(new Date().setDate(new Date().getDate() + Delivery[1].days)).toISOString().substring(0, 10)}</p>
+        <Box border={1}>
+          <Typography>{Delivery[1].name}</Typography>
+          <Typography>Leverans dagar: {Delivery[1].days}</Typography>
+          <Typography>Fraktkostnad: {Delivery[1].price} kr.</Typography>
+          <Typography>Ankomst: {new Date(new Date().setDate(new Date().getDate() + Delivery[1].days)).toISOString().substring(0, 10)}</Typography>
+        </Box>
       </div>
       ) 
       case "Schenker": return(
       <div>
-        <p>{Delivery[2].name}</p>
-        <p>{Delivery[2].days}</p>
-        <p>{Delivery[2].price}</p>
-        <p>{new Date(new Date().setDate(new Date().getDate() + Delivery[2].days)).toISOString().substring(0, 10)}</p>
+        <Box border={1}>
+          <Typography>{Delivery[2].name}</Typography>
+          <Typography>Leverans dagar: {Delivery[2].days}</Typography>
+          <Typography>Fraktkostnad: {Delivery[2].price} kr.</Typography>
+          <Typography>Ankomst: {new Date(new Date().setDate(new Date().getDate() + Delivery[2].days)).toISOString().substring(0, 10)}</Typography>
+        </Box>
       </div>
       )
     }
@@ -73,6 +80,7 @@ export default class PaymentForm extends React.Component{
   render() {
     return (
       <React.Fragment>
+        <Typography></Typography>
         <Typography variant="h6" gutterBottom>
           Fraktsätt
         </Typography>
@@ -88,8 +96,11 @@ export default class PaymentForm extends React.Component{
           <FormControlLabel value={Delivery[2].name} control={<Radio />} label="Schenker" 
           onChange={() => this.setState({ selectedDeliveryMethod: "Schenker"})}/>
         </RadioGroup>
+        <div>
+          
+        </div>
    
-        <Grid container spacing={3}>
+        <Grid container spacing={0}>
           {this.renderPaymentFields()}
         </Grid>
        
