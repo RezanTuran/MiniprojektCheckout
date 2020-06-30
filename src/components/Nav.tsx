@@ -8,7 +8,7 @@ import StoreIcon from '@material-ui/icons/Store';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 import CheckIcon from '@material-ui/icons/Check';
 import Contact from './pages/Contact';
-import Product from '../components/Product';
+import Products from '../components/Product';
 import About from './pages/About';
 import Home from './pages/Home';
 import Done from './pages/Done';
@@ -16,6 +16,7 @@ import Checkout from './pages/Checkout';
 import CartView from './cartsite'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { CartConsumer, ContextState } from '../contexts/cartContxt'
+import { ProductView } from './ProductView';
 
 
 
@@ -118,7 +119,7 @@ const Nav = () => {
               <Typography variant="h3" gutterBottom style={{ textAlign: 'center' }}>
                 Produkter
                     </Typography>
-              <Product />
+              <Products />
             </Container>
           </Route>
 
@@ -129,6 +130,9 @@ const Nav = () => {
               </Typography>
             </Container>
           </Route>
+
+          <Route exact path="/product/:view" component={ProductView} />
+  
 
           <Route exact path="/contact" >
             <Container>

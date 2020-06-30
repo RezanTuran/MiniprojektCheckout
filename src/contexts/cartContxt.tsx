@@ -1,8 +1,8 @@
 import React, { createContext, Component } from 'react'
-import { Product } from '../components/Product'
+import { Products } from '../components/Product'
 
 interface CartItem {
-    theItem: Product,
+    theItem: Products,
     quantity: number
 }
 
@@ -11,19 +11,19 @@ export interface ProviderState {
 }
 
 export interface ContextState extends ProviderState {
-    addProductToCart: (product: Product) => void
-    deletefromcart: (product: Product, index: number) => void
+    addProductToCart: (product: Products) => void
+    deletefromcart: (product: Products, index: number) => void
     countProductsInCart: () => void
 }
 
 
 export const CartContext = createContext<ContextState>({
     cartItems: [],
-    addProductToCart: (product: Product) => {
+    addProductToCart: (product: Products) => {
         console.log("error while adding " + product.name + " to the cart")
 
     },
-    deletefromcart: (product: Product, index: number) => {
+    deletefromcart: (product: Products, index: number) => {
         console.log("error while deleting" + product.name + "from cart")
     },
     countProductsInCart: () => {
@@ -42,7 +42,7 @@ export class CartProvider extends Component<{}, ProviderState> {
         }
     }
 
-    addProductToCart = (product: Product) => {
+    addProductToCart = (product: Products) => {
         const theCart: CartItem[] = Object.assign([], this.state.cartItems)
 
         const foundProductIndex: number = this.state.cartItems.findIndex((produktToFind) => {
@@ -55,7 +55,7 @@ export class CartProvider extends Component<{}, ProviderState> {
         }
         this.setState({ cartItems: theCart })
     }
-    deletefromcart = (product: Product, index: number) => {
+    deletefromcart = (product: Products, index: number) => {
         const theCart: CartItem[] = Object.assign([], this.state.cartItems)
 
         const foundProdIndex: number = this.state.cartItems.findIndex((productToFind) => {
