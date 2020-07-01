@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import {Products} from './Product';
 import { RouteProps } from 'react-router-dom';
-
+import { Typography, Container } from '@material-ui/core';
 
 
 export interface State {
@@ -24,18 +24,38 @@ export class ProductView extends React.Component<Props & RouteProps, State> {
             return product.name === newString;
         }); 
         return(
-            <div>
-                    <div>
-                        <h1>{productToDisplay[0].price}</h1>
-                        <h1>{productToDisplay[0].name} </h1>
-                        <h1>{productToDisplay[0].description} </h1>
-                        <h1>{productToDisplay[0].size} </h1>
-                        <img src={ require("./../assets/images/" + productToDisplay[0].img) } alt="produktImg" />
-                        
-                    </div>
-            </div>
+            <Container>
+                <div style={productPageCard}>
+                            <Typography variant="h4" >{productToDisplay[0].name} </Typography><br/>
+                            <img style={imgStyle} src={ require("./../assets/images/" + productToDisplay[0].img) } alt="produktImg" />
+                            <br/>
+                            <Typography variant="h5">Pris: {productToDisplay[0].price} :-</Typography>
+                            <Typography variant="h6">stl: {productToDisplay[0].size}</Typography>
+                            <Typography style={textPosition} variant="h6">{productToDisplay[0].description}</Typography>
+                            <Typography style={textPosition}>{productToDisplay[0].extraDescription}</Typography>
+
+                </div>
+            </Container>
         )
             }
            }
 
 
+           let productPageCard:CSSProperties ={
+            boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
+            maxWidth: 'px',
+            textAlign: 'center',
+            fontFamily: 'arial',
+            margin: '5px',
+            padding: '10px'
+            
+          }
+
+          let imgStyle:CSSProperties ={
+            width: '50%',
+          
+        }
+
+        let textPosition:CSSProperties = {
+            textAlign: 'left'
+        }

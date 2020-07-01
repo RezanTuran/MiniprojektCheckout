@@ -12,7 +12,7 @@ export default function cartView() {
                 let totalPrice = 0;
                 return (
                     <div>
-                        <h4 style={{textAlign: 'center'}}>Kundkorg</h4>
+                        <Typography variant="h4" style={{textAlign: 'center'}}>Kundkorg</Typography>
                     <div style={productCardContainer}>
                         {
                             contextData.cartItems.length ?
@@ -37,7 +37,7 @@ export default function cartView() {
                                 )
                                 :
                                 (<div>
-                                    <h6>Din varukorg är tom</h6>
+                                    <Typography variant="h5">Din varukorg är tom</Typography>
                                 </div>)
                         }
                     </div>

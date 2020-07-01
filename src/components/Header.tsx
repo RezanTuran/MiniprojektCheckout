@@ -10,7 +10,7 @@ const Header = () => {
     return (
         <AppBar style={headerStyle} position='static'>
             <Toolbar style={headerItems} >
-                <Typography>Header</Typography>
+                <Typography>Shop</Typography>
                 {<Link to="/cart">
               <CartConsumer>
                 {(contextData: ContextState) => {
