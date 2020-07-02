@@ -1,30 +1,68 @@
-# Miniprojekt 2 - Checkout 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-En hemsida ska skapas med hjälp av Create-React-App och Typescript. Hemsidan ska bestå av en **startsida** där alla produkter listas, en **produktsida** där en utvald produkt visass och en **utcheckningssida** där kunden har möjligheten att slutföra sitt köp. Det ska användas ett designsystem för att hjälpa till att skapa layouten och alla grafiska element på hemsidan - som man väljer utifrån följande lista:
+## Available Scripts
 
-[Awesome React Design Systems](https://github.com/jbranchaud/awesome-react-design-systems)
+In the project directory, you can run:
 
+### `npm start`
 
-### Beskrivning av hur projektet byggs
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Projektet är byggt med hjälp av React, Typescript och körs i Node.js. Installation och utförlig beskrivning hittar ni på följande sidor.
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-* [ReactJS](https://reactjs.org)
-* [Typescript](https://www.typescriptlang.org/)
-* [NodeJS](https://nodejs.org/en/)
+### `npm test`
 
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-Vår grupp har valt Marerial UI designsystem till vårt projekt. Dokumentationnen och hur man installerar Material UI hittar ni här:
+### `npm run build`
 
-* [Material UI](https://material-ui.com/)
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
 
-### Att starta projektet
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-När ni har installerar node.js och alla nödvändiga tilläg i er kodredigerare, gör följande:
+### `npm run eject`
 
-1. Kör `git clone https://github.com/RezanTuran/MiniprojektCheckout` (eller klona [ditt eget fork](https://github.com/RezanTuran/MiniprojektCheckout/fork) från repository)
-2. Gå till den 'klonade' mappen `cd MiniprojektCheckout`
-3. Kör `npm install`( måste alltid köras före första start eller när du ändrar källkoden)
-4. Kör `npm start`
-5. Bläddra till [http://localhost:3000](http://localhost:3000) (om sidan inte öppnas automatiskt)
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `npm run build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
