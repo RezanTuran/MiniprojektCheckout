@@ -45,7 +45,7 @@ export default class PaymentForm extends React.Component{
     switch(this.state.selectedDeliveryMethod) {
       case "PostNord": return(
       <div>
-        <Box border={1}>
+        <Box border={1} p={2}>
           <Typography>{Delivery[0].name}</Typography>
           <Typography>Leverans dagar: {Delivery[0].days}</Typography>
           <Typography>Fraktkostnad: {Delivery[0].price} kr.</Typography>
@@ -55,7 +55,7 @@ export default class PaymentForm extends React.Component{
       )
       case "DHL": return(
       <div>
-        <Box border={1}>
+        <Box border={1} p={2}>
           <Typography>{Delivery[1].name}</Typography>
           <Typography>Leverans dagar: {Delivery[1].days}</Typography>
           <Typography>Fraktkostnad: {Delivery[1].price} kr.</Typography>
@@ -65,7 +65,7 @@ export default class PaymentForm extends React.Component{
       ) 
       case "Schenker": return(
       <div>
-        <Box border={1} m={2} >
+        <Box border={1} p={2} >
           <Typography>{Delivery[2].name}</Typography>
           <Typography>Leverans dagar: {Delivery[2].days}</Typography>
           <Typography>Fraktkostnad: {Delivery[2].price} kr.</Typography>
