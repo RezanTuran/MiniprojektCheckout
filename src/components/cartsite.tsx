@@ -10,6 +10,14 @@ export default function cartView() {
         <CartConsumer>
             {(contextData: ContextState) => {
                 let totalPrice = 0;
+                
+                function cardValidation(){
+                    if(totalPrice === 0){
+                        alert("Kundvagnen är tomt")
+                        window.location.reload();
+                    }
+                }
+
                 return (
                     <div>
                         <Typography variant="h4" style={{textAlign: 'center'}}>Kundkorg</Typography>
@@ -43,7 +51,7 @@ export default function cartView() {
                     </div>
                         <h6>{contextData.cartItems.length ? "Total pris är: " + totalPrice : "Total pris är: 0"} kr</h6>
                         <Link to="/Checkout">
-                            <Button variant="contained" color="primary">Till Betalning</Button>
+                            <Button onClick={cardValidation} variant="contained" color="primary">Till Betalning</Button>
                         </Link>
                     </div>
                 )

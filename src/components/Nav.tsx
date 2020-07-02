@@ -6,7 +6,6 @@ import HomeIcon from "@material-ui/icons/Home";
 import InfoIcon from '@material-ui/icons/Info';
 import StoreIcon from '@material-ui/icons/Store';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
-import CheckIcon from '@material-ui/icons/Check';
 import Contact from './pages/Contact';
 import Products from '../components/Product';
 import About from './pages/About';
@@ -66,15 +65,6 @@ const Nav = () => {
                   <ContactSupportIcon />
                 </ListItemIcon>
                 <ListItemText primary={"Kontakt"} />
-              </ListItem>
-            </Link>
-
-            <Link to="/checkout" className={classes.link}>
-              <ListItem button>
-                <ListItemIcon>
-                  <CheckIcon />
-                </ListItemIcon>
-                <ListItemText primary={"Checkout"} />
               </ListItem>
             </Link>
 
