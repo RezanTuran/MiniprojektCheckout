@@ -1,5 +1,10 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, {CSSProperties} from 'react';
+import { AppBar, Toolbar, Button, IconButton } from '@material-ui/core';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Hidden from '@material-ui/core/Hidden';
+import MenuIcon from '@material-ui/icons/Menu';
+import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, Container, Typography } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
@@ -8,30 +13,78 @@ import StoreIcon from '@material-ui/icons/Store';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 import CheckIcon from '@material-ui/icons/Check';
 import Contact from './pages/Contact';
-import Products from '../components/Product';
+import Products from './Product';
 import About from './pages/About';
 import Home from './pages/Home';
 import Done from './pages/Done';
 import Checkout from './pages/Checkout';
-import CartView from './cartsite'
+import CartView from './cartsite';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { CartConsumer, ContextState } from '../contexts/cartContxt'
 import { ProductView } from './ProductView';
+const drawerWidth = 240;
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+    },
+    drawer: {
+      [theme.breakpoints.up('sm')]: {
+        width: drawerWidth,
+        flexShrink: 0,
+      },
+    },
+    appBar: {
+      [theme.breakpoints.up('sm')]: {
+        width: `calc(100% - ${drawerWidth}px)`,
+        marginLeft: drawerWidth,
+      },
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+      [theme.breakpoints.up('sm')]: {
+        display: 'none',
+      },
+    },
+    // necessary for content to be below app bar
+    toolbar: theme.mixins.toolbar,
+    drawerPaper: {
+      width: drawerWidth,
+    },
+    content: {
+      flexGrow: 1,
+      padding: theme.spacing(3),
+    },
+    link: {
+        textDecoration: 'none',
+        color: theme.palette.text.primary
+      },
+  }),
+);
 
+interface Props {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window?: () => Window;
+}
 
-const Nav = () => {
+export default function Navbar(props: Props) {
+  const { window } = props;
   const classes = useStyles();
-  return (
-    
-    <Router>
-      <div style={{ display: 'flex', height: 'auto' }} >
-        <Drawer
-          variant="persistent"
-          anchor="left"
-          open={true}
-          classes={{ paper: classes.drawerPaper }}
-        >
+  const theme = useTheme();
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  const drawer = (
+    <div>
+      <div className={classes.toolbar} />
+        <Route>
           <List>
             <Link to="/" className={classes.link}>
               <ListItem button>
@@ -93,17 +146,94 @@ const Nav = () => {
                 }}
               </CartConsumer>
             </Link>}
+         </List>
+         </Route>
+      </div>
+  );
 
-          </List>
-        </Drawer>
+  const container = window !== undefined ? () => window().document.body : undefined;
 
-        <Switch>
+  return (
+    <div className={classes.root}>
+      <CssBaseline />
+      <AppBar position="fixed" className={classes.appBar}>
+        <Toolbar style={headerItems}>
+        <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            className={classes.menuButton}
+          ><MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap>
+            Shop
+          </Typography>
+          {<Link to="/cart">
+              <CartConsumer>
+                {(contextData: ContextState) => {
+                  return (
+                    <Button style={{ color: "white"}}>
+                        <ShoppingCartIcon />
+                      <span>({contextData.countProductsInCart()})</span>
+                    </Button>
+                  )
+                }}
+              </CartConsumer>
+            </Link>}
+        </Toolbar>
+      </AppBar>
+
+      
+      <nav className={classes.drawer} aria-label="mailbox folders">
+        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+        <Hidden smUp implementation="css">
+          <Drawer
+            container={container}
+            variant="temporary"
+            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}
+          > 
+          {drawer}
+         
+          </Drawer>
+        </Hidden>
+        
+        
+        <Hidden xsDown implementation="css">
+          <Drawer
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            variant="permanent"
+            open
+          > 
+          {drawer}
+          
+          </Drawer>
+        </Hidden>
+            
+          
+      </nav>
+    
+      <div className={classes.content}>
+        <div className={classes.toolbar} />
+        
+      
+      <Switch>
           <Route exact path="/" >
             <Container>
               <Typography variant="h3" gutterBottom>
                 <Home />
               </Typography>
-            </Container> 
+            </Container>
           </Route>
 
           <Route exact path="/cart" >
@@ -157,24 +287,19 @@ const Nav = () => {
               </Typography>
             </Container>
           </Route>
-
-        </Switch>
-
+     </Switch>
+      
       </div>
-    </Router>
+    </div>
   );
+}
+
+const headerStyle: CSSProperties = {
+  display: 'flex',
+  backgroundColor: 'gray',
 };
 
-const useStyles = makeStyles((theme) => ({
-  drawerPaper: {
-    width: 'inherit',
-    position: 'initial'
-  },
-  link: {
-    textDecoration: 'none',
-    color: theme.palette.text.primary
-  }
-}))
-
-
-export default Nav;
+const headerItems: CSSProperties = {
+  justifyContent: 'space-between',
+  cursor: 'pointer'
+}

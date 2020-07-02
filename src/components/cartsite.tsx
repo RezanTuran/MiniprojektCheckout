@@ -21,7 +21,7 @@ export default function cartView() {
                                     return (
                                     <div style={productCard}>  
                                         <div key={cartItem.theItem.id}>
-                                            <p>{cartItem.theItem.name}</p>
+                                            <Typography variant="h5"> {cartItem.theItem.name}</Typography>
                                             <img style={imgStyle} src={require("./../assets/images/" + cartItem.theItem.img)} alt="pic" />
                                             <p style={price}> {cartItem.theItem.price} SEK</p>
                                             <div >

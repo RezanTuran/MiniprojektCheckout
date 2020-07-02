@@ -1,6 +1,5 @@
 import React from 'react';
-import Nav from './components/Nav';
-import Header from './components/Header';
+import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { CartProvider } from './contexts/cartContxt'
 import { BrowserRouter } from "react-router-dom";
@@ -10,8 +9,7 @@ function App() {
     <div>
       <BrowserRouter>
         <CartProvider>
-          <Header />
-          <Nav />
+          <Navbar />
         </CartProvider>
         <Footer />
       </BrowserRouter>

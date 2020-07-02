@@ -65,7 +65,7 @@ export default class PaymentForm extends React.Component{
       ) 
       case "Schenker": return(
       <div>
-        <Box border={1}>
+        <Box border={1} m={2} >
           <Typography>{Delivery[2].name}</Typography>
           <Typography>Leverans dagar: {Delivery[2].days}</Typography>
           <Typography>Fraktkostnad: {Delivery[2].price} kr.</Typography>
