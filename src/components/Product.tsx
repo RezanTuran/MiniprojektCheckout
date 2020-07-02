@@ -7,6 +7,7 @@ export  interface Products{
   id: number
   name: string
   description: string
+  detailDescription: string
   size:number
   price: number
   img: string
@@ -17,6 +18,7 @@ export const Products: Products[] = [
     "id": 0,
     "name":"Gant",
     "description": "Bra kvalite",
+    "detailDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
     "size": 41,
     "price": 899,
     "img": "Gant.png"
@@ -25,6 +27,7 @@ export const Products: Products[] = [
     "id": 1,
     "name":"Nike",
     "description": "Bra kvalite",
+    "detailDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
     "size": 43,
     "price": 589,
     "img": "Nike.png"
@@ -33,6 +36,7 @@ export const Products: Products[] = [
     "id": 2,
     "name":"Addidas",
     "description": "Bra kvalite",
+    "detailDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
     "size": 38,
     "price": 675,
     "img": "Addidas.png"
@@ -41,6 +45,7 @@ export const Products: Products[] = [
     "id": 3,
     "name":"Puma",
     "description": "Bra kvalite",
+    "detailDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
     "size": 41,
     "price": 499,
     "img": "Puma.png"
@@ -49,6 +54,7 @@ export const Products: Products[] = [
     "id": 4,
     "name":"Nike",
     "description": "Bra kvalite",
+    "detailDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
     "size": 40,
     "price": 359,
     "img": "Nike2.png"
@@ -57,6 +63,7 @@ export const Products: Products[] = [
     "id": 5,
     "name":"Puma",
     "description": "Bra kvalite",
+    "detailDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
     "size": 40,
     "price": 359,
     "img": "Puma2.png"
@@ -65,6 +72,7 @@ export const Products: Products[] = [
     "id": 6,
     "name":"Lacoste",
     "description": "Bra kvalite",
+    "detailDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
     "size": 40,
     "price": 359,
     "img": "Nike3.png"
@@ -73,6 +81,7 @@ export const Products: Products[] = [
     "id": 7,
     "name":"Gant",
     "description": "Bra kvalite",
+    "detailDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
     "size": 41,
     "price": 899,
     "img": "Gant.png"
@@ -81,6 +90,7 @@ export const Products: Products[] = [
     "id": 8,
     "name":"Gant",
     "description": "Bra kvalite",
+    "detailDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
     "size": 41,
     "price": 899,
     "img": "Gant.png"
@@ -89,6 +99,7 @@ export const Products: Products[] = [
     "id": 9,
     "name":"Puma",
     "description": "Bra kvalite",
+    "detailDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
     "size": 40,
     "price": 359,
     "img": "Puma2.png"
@@ -97,6 +108,7 @@ export const Products: Products[] = [
     "id": 10,
     "name":"Puma",
     "description": "Bra kvalite",
+    "detailDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
     "size": 41,
     "price": 499,
     "img": "Puma.png"
@@ -105,6 +117,7 @@ export const Products: Products[] = [
     "id": 11,
     "name":"Nike",
     "description": "Bra kvalite",
+    "detailDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
     "size": 43,
     "price": 589,
     "img": "Nike.png"
@@ -126,9 +139,8 @@ class Product extends Component<{}, State> {
           <div style={productCardContainer}>
              {Products.map((product) =>{
                 return(
-
-                  <div key = {product.id}>
-                  <div key={product.id} style={productCard}>
+                  <div key = {product.id} style={productCard}>
+                  <div key={product.id}>
                 <Link to={"/product/" + product.name}>
                     <img style={imgStyle} src={ require("./../assets/images/" + product.img) } alt="produktImg" />
                 </Link>
@@ -136,7 +148,7 @@ class Product extends Component<{}, State> {
                   <p style={price}>{ product.price } :- </p>
                   <p>{ product.description }</p>
                   <p>{ product.size }</p>
-      </div>
+          </div>
                   <CartConsumer>
                   {(contextData: ContextState) => {
                     //console.log(contextData.cartItems)

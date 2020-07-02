@@ -28,10 +28,9 @@ export class ProductView extends React.Component<Props & RouteProps, State> {
                     <div>
                         <h1>{productToDisplay[0].price}</h1>
                         <h1>{productToDisplay[0].name} </h1>
-                        <h1>{productToDisplay[0].description} </h1>
+                        <h1>{productToDisplay[0].detailDescription} </h1>
                         <h1>{productToDisplay[0].size} </h1>
                         <img src={ require("./../assets/images/" + productToDisplay[0].img) } alt="produktImg" />
-                        
                     </div>
             </div>
         )
