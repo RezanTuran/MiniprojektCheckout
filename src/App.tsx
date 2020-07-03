@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <div>
+    <div style={{backgroundColor:'white'}}>
       <BrowserRouter>
         <CartProvider>
           <Navbar />
