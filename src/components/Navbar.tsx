@@ -11,7 +11,6 @@ import HomeIcon from "@material-ui/icons/Home";
 import InfoIcon from '@material-ui/icons/Info';
 import StoreIcon from '@material-ui/icons/Store';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
-import CheckIcon from '@material-ui/icons/Check';
 import Contact from './pages/Contact';
 import Products from './Product';
 import About from './pages/About';
@@ -122,15 +121,7 @@ export default function Navbar(props: Props) {
               </ListItem>
             </Link>
 
-            <Link to="/checkout" className={classes.link}>
-              <ListItem button>
-                <ListItemIcon>
-                  <CheckIcon />
-                </ListItemIcon>
-                <ListItemText primary={"Checkout"} />
-              </ListItem>
-            </Link>
-
+            
             {<Link to="/cart" className={classes.link}>
               <CartConsumer>
                 {(contextData: ContextState) => {
@@ -293,11 +284,6 @@ export default function Navbar(props: Props) {
     </div>
   );
 }
-
-const headerStyle: CSSProperties = {
-  display: 'flex',
-  backgroundColor: 'gray',
-};
 
 const headerItems: CSSProperties = {
   justifyContent: 'space-between',

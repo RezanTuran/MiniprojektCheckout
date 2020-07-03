@@ -13,9 +13,10 @@ export interface ProviderState {
 export interface ContextState extends ProviderState {
     addProductToCart: (product: Products) => void
     deletefromcart: (product: Products, index: number) => void
+    deleteOneProduct: (product: Products, index: number) => void
+    clearProductCart: (product: Products, index: number) => void
     countProductsInCart: () => void
 }
-
 
 export const CartContext = createContext<ContextState>({
     cartItems: [],
@@ -24,6 +25,12 @@ export const CartContext = createContext<ContextState>({
 
     },
     deletefromcart: (product: Products, index: number) => {
+        console.log("error while deleting" + product.name + "from cart")
+    },
+    deleteOneProduct: (product: Products, index: number) => {
+        console.log("error while deleting" + product.name + "from cart")
+    },
+    clearProductCart: (product: Products, index: number) => {
         console.log("error while deleting" + product.name + "from cart")
     },
     countProductsInCart: () => {
@@ -72,6 +79,33 @@ export class CartProvider extends Component<{}, ProviderState> {
         this.setState({ cartItems: theCart })
     }
 
+    deleteOneProduct = (product: Products, index: number) => {
+        const theCart: CartItem[] = Object.assign([], this.state.cartItems)
+
+        const foundProdIndex: number = this.state.cartItems.findIndex((productToFind) => {
+            return product.id === productToFind.theItem.id
+        })
+
+        if (foundProdIndex === -1 || theCart[foundProdIndex]) {
+            theCart.splice(index, 1, { theItem: product, quantity: -1 })
+            theCart.splice(index, 1)
+        } else {
+            theCart[foundProdIndex].quantity--
+        }
+
+        this.setState({ cartItems: theCart })
+    }
+
+    clearProductCart = (product: Products, index: number) => {
+        const theCart: CartItem[] = Object.assign([], this.state.cartItems)
+
+            theCart.splice(index, theCart.length)
+    
+        this.setState({ cartItems: theCart })
+    }
+
+    
+
     countProductsInCart = () => {
         let totalQuantity: number = 0
         this.state.cartItems.map((item) => {
@@ -89,6 +123,8 @@ export class CartProvider extends Component<{}, ProviderState> {
                 ...this.state,
                 addProductToCart: this.addProductToCart,
                 deletefromcart: this.deletefromcart,
+                deleteOneProduct: this.deleteOneProduct,
+                clearProductCart: this.clearProductCart,
                 countProductsInCart: this.countProductsInCart,
             }}>
                 {this.props.children}
