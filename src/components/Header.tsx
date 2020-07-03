@@ -28,8 +28,8 @@ export default function ButtonAppBar() {
 
 
     return (
-        <AppBar style={headerStyle} position='static'>
-            <Toolbar style={headerItems} >
+        <AppBar position='static'>
+            <Toolbar  >
               <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                 <MenuIcon />
               </IconButton>
@@ -51,13 +51,4 @@ export default function ButtonAppBar() {
     );
 };
 
-const headerStyle: CSSProperties = {
-    display: 'flex',
-    backgroundColor: 'gray',
-};
-
-const headerItems: CSSProperties = {
-    justifyContent: 'space-between',
-    cursor: 'pointer'
-}
 

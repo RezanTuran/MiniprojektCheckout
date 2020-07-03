@@ -150,7 +150,6 @@ class Product extends Component<{}, State> {
                   <p style={price}>{ product.price } :- </p>
                   <p>{ product.description }</p>
                   <p>stl.{ product.size }</p>
-      </div>
                   <CartConsumer>
                   {(contextData: ContextState) => {
                     //console.log(contextData.cartItems)
@@ -160,6 +159,7 @@ class Product extends Component<{}, State> {
                     )
                   }}
                 </CartConsumer>
+      </div>
                 </div>
                 )
               })}

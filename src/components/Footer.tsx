@@ -19,7 +19,7 @@ const Footer = () => {
 
 const footerStyle: CSSProperties = {
     position:'sticky',
-    backgroundColor: 'gray',
+    backgroundColor: '#3f51b5',
     left: 0,
     bottom: 0,
     width: '100%',

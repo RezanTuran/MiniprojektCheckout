@@ -1,7 +1,8 @@
 import React, {CSSProperties} from 'react';
 import {Products} from './Product';
 import { RouteProps } from 'react-router-dom';
-import { Typography, Container } from '@material-ui/core';
+import { Typography, Container, Button } from '@material-ui/core';
+import { CartConsumer, ContextState } from '../contexts/cartContxt';
 
 
 export interface State {
@@ -33,7 +34,15 @@ export class ProductView extends React.Component<Props & RouteProps, State> {
                             <Typography variant="h6">stl: {productToDisplay[0].size}</Typography>
                             <Typography style={textPosition} variant="h6">{productToDisplay[0].description}</Typography>
                             <Typography style={textPosition}>{productToDisplay[0].extraDescription}</Typography>
-
+                <CartConsumer>
+                  {(contextData: ContextState) => {
+                    //console.log(contextData.cartItems)
+                    return (
+                      <Button variant="contained" color="primary" onClick={() => contextData.addProductToCart(productToDisplay[0])}>
+                        KÖP</Button>
+                    )
+                  }}
+                </CartConsumer>
                 </div>
             </Container>
         )
